@@ -31,13 +31,16 @@ projectData = {};
 
 // GET route Setup naming the route and callback arrow function to return the JS object projectData
 app.get('/get', (req, res) => {
-    res.send('hi');
+    res.send(projectData);
 });
 
 //POST route is working on Postman
 app.post('/add', (req, res) => {
-    res.send('POST route working');
-  });
+    projectData.temperature = req.body.temp,
+    projectData.date = req.body.date,
+    projectData.userResponse = req.body.userResponse,
+    res.send(projectData);
+});
 
 
 
