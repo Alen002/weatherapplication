@@ -4,24 +4,14 @@ const express = require('express');
 // Start up an instance of app
 const app = express();
 
-
-
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: false })); 
-app.use(bodyParser.json());
-
-/* app.use(express.urlencoded());
-app.use(express.json()); */
-
-
-app.post('/add', (req, res) => {
-  res.send('welcome');
-});
- 
-
 // Cors for cross origin allowance
 const cors = require('cors');
 app.use(cors());
+
+//Body-Parser for Post requests
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.json());
 
 /** 
 Initialize the main project folder
@@ -44,6 +34,10 @@ app.get('/get', (req, res) => {
     res.send('hi');
 });
 
+//POST route is working on Postman
+app.post('/add', (req, res) => {
+    res.send('POST route working');
+  });
 
 
 
