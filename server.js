@@ -18,57 +18,43 @@ Initialize the main project folder
 Connect server-side code in server.js to the client-side code stored in the website folder
 */
 app.use(express.static('website'));
-const port  = 3000;
+const port  = 5500;
 
 // Setup Server
 const server = app.listen (port, ()=>{
     console.log(`running on localhost: ${port}`)
-    });
+});
 
 
-// Initiate JS object named project data
-projectData = {}; 
+// Initialize an empty JS object named projectData
+const projectData = {}; 
 
-// GET route Setup naming the route and callback arrow function to return the JS object projectData
+// Response with JS object when a GET request is made from the webpage (=client)
 app.get('/get', (req, res) => {
     res.send(projectData);
 });
 
-//POST route is working on Postman
+//An HTTP POST request sends data to the project's endpoint, where it is stored and can be accessed through a GET request
 app.post('/add', (req, res) => {
-    projectData.temperature = req.body.temp,
-    projectData.date = req.body.date,
-    projectData.userResponse = req.body.userResponse,
+    projectData.temperature = req.body.temp;
+    projectData.date = req.body.date;
+    projectData.userResponse = req.body.userResponse;
+    projectData.push = 'fjkgjdkflghjdfkl'
     res.send(projectData);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Retrieve data from the API with fetch()
-
-
-/* app.post('/add',function info(req, res) {
-
-    projectData.temp = req.body.temp;
-    
-    projectData.date = req.body.date;
-    
-    projectData.content = req.body.content;
-    
-    res.send(projectData);
-    
-    console.log(projectData);}) */
-
   
+
+
+
+
+
+
+// POST an animal
+const data = [];
+
+app.post('/test', addAnimal);
+function addAnimal (req,res){
+    data.push(req.body = 'server.js');
+    res.send(data)
+};
+
