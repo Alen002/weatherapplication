@@ -1,5 +1,3 @@
-
-
 /* Express to run server and routes */
 const express = require('express');
 
@@ -29,27 +27,21 @@ const server = app.listen(port, listening);
 
 
 /* Empty JS object to act as endpoint for all routes */
-projectData = {};
+/* projectData = {}; */
 
 app.get('/all', sendData);
 
 function sendData (request, response) {
   response.send(projectData);
-};
+}; 
 
-// TODO-ROUTES!
-/* app.post('/add', (request, response) => {
-    response.send('POST received'); 
- });
 
- */
 // POST an animal
-const data = [];
+const projectData = [];
 
 app.post('/add', (request, response) => {
     
-    data.push(request.body); //receive the data from postData in app.js and make it actionable with request.body
-    response.send(data);
+    projectData.push(request.body); //receive the data from postData in app.js and make it actionable with request.body
+    response.send(projectData);
 });
-
 
