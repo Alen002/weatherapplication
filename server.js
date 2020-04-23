@@ -38,3 +38,4 @@ app.post('/add', (request, response) => {
 app.get('/all', (request, response) => {
     response.send(projectData);
 });
+

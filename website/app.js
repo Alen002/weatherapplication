@@ -1,7 +1,7 @@
 /* Global Variables */
-apiURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
-zipCode = '78738';
-apiKey = `&${API_key}`;
+const apiURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+const apiKey = `&${API_key}`;
+const e = document.querySelector('#generate');
 
 /* Client-Side side defined POST route */
 const postData = async ( url= '', data = {})=>{
@@ -27,7 +27,10 @@ const postData = async ( url= '', data = {})=>{
 
 
 
+  
+  
 
+// Async function to retrieve data from the web API
 // await needs to be implemented whenever asnyc is being used
 const getData = async (apiURL, zipCode, apiKey) => {  
       const response = await fetch(apiURL + zipCode + apiKey);
@@ -36,21 +39,50 @@ const getData = async (apiURL, zipCode, apiKey) => {
           //data.main.temp for example would retrieve the actual temperature from the API
           const data = await response.json(); 
           console.log(data);
+          console.log(data.name);
           return data;
         } catch(error) {
           console.log("error", error);
         };
 };  
 
-/* data retrieved from the web api is posted to the POST route server */
-getData(apiURL, zipCode, apiKey)
+// Event listener
+e.addEventListener('click', () => {
+    zipCode = document.querySelector('#zip').value;
+    //data retrieved from the web api is posted to the POST route server
+    getData(apiURL, zipCode, apiKey)
     .then(data => {
+        /* console.log(data.sys.country); */
         postData('/add', {
             temp: data.main.temp,
             date: Date(),
-            userResponse: 'My comment'
+            userResponse: document.querySelector('#feelings').value
         });
-    });
+})}); 
+  
+/* Retrieve user input from the form */
+//zip Code
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Alternative way to Post the API data is to use only a fetch request without async//
