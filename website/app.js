@@ -1,6 +1,7 @@
 /* Global Variables */
-//Put the credentials and base URL here
-/* let projectData = {}; */
+apiURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
+zipCode = '78738';
+apiKey = `&${API_key}`;
 
 /* Client-Side side defined POST route */
 const postData = async ( url= '', data = {})=>{
@@ -11,7 +12,8 @@ const postData = async ( url= '', data = {})=>{
       headers: {
           'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data), // body data type must match "Content-Type" header        
+      //body data type must match "Content-Type" header   
+      body: JSON.stringify(data),      
     });
   
       try {
@@ -23,10 +25,8 @@ const postData = async ( url= '', data = {})=>{
       }
   }
 
-/** WEP API - Get JSON data from openweathermap.org with a async GET fetch request */
-apiURL = 'https://api.openweathermap.org/data/2.5/weather?zip='
-zipCode = '78738';
-apiKey = `&${API_key}`;
+
+
 
 // await needs to be implemented whenever asnyc is being used
 const getData = async (apiURL, zipCode, apiKey) => {  
@@ -42,7 +42,7 @@ const getData = async (apiURL, zipCode, apiKey) => {
         };
 };  
 
-// The data is posted to the POST route in server.js
+/* data retrieved from the web api is posted to the POST route server */
 getData(apiURL, zipCode, apiKey)
     .then(data => {
         postData('/add', {
